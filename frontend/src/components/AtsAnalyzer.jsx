@@ -16,7 +16,7 @@ export default function AtsAnalyzer({ resumeId, token }) {
     setError('');
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/analyze', {
+      const res = await fetch('/api/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ import ResumeForm from './components/ResumeForm';
 import ResumePreview from './components/ResumePreview';
 import AtsAnalyzer from './components/AtsAnalyzer';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = '/api';
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
