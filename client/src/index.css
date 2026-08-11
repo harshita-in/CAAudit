@@ -1,0 +1,995 @@
+/* --- Theme Variables --- */
+:root {
+  --bg-main: #FAF9F6;      /* Warm Alabaster White */
+  --bg-card: #FFFFFF;      /* Pure White */
+  --bg-input: #F3F1ED;     /* Warm Sand / Soft Champagne */
+  --border-color: #E2DDD5;  /* Subtle Warm Border */
+  --text-primary: #2C2523;   /* Rich Charcoal-Bronze */
+  --text-secondary: #5E524F; /* Soft Warm Brown-Grey */
+  --text-muted: #8E827F;     /* Muted Earthy Taupe */
+  
+  --accent: #B76E79;        /* Classic Rose Gold */
+  --accent-hover: #A25B66;  /* Deeper Rose Gold */
+  --accent-glow: rgba(183, 110, 121, 0.1);
+  
+  --success: #059669; /* Rich Emerald */
+  --warning: #D97706; /* Dark Amber */
+  --danger: #DC2626;  /* Crimson Red */
+  
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Global Reset & Body --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* --- Layout Utilities --- */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(250, 249, 246, 0.8);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #E0A899, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* --- Auth Styling --- */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 73px);
+  padding: 2rem;
+}
+
+.auth-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.auth-form {
+  position: relative;
+  z-index: 1;
+}
+
+.auth-title {
+  font-size: 28px;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.auth-subtitle {
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.auth-btn {
+  width: 100%;
+  background-color: var(--accent);
+  color: white;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.auth-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.auth-switch {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.auth-switch span {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* --- Dashboard --- */
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  width: 100%;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.resumes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.resume-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.resume-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.resume-card-title {
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+}
+
+.resume-card-date {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.resume-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+.template-badge {
+  background-color: var(--bg-input);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.delete-btn {
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.delete-btn:hover {
+  color: var(--danger);
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 5rem 2rem;
+  background-color: var(--bg-card);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.empty-state-icon {
+  font-size: 48px;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+}
+
+/* --- Editor Workspace --- */
+.editor-layout {
+  display: flex;
+  height: calc(100vh - 73px);
+  overflow: hidden;
+}
+
+.editor-sidebar {
+  width: 45%;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sidebar-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+}
+
+.sidebar-tab {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  background: transparent;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.sidebar-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background-color: var(--accent-glow);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  background-color: var(--bg-main);
+}
+
+/* Preview Pane */
+.preview-pane {
+  width: 55%;
+  background-color: #EAE5DE;
+  overflow-y: auto;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.preview-controls {
+  width: 21cm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.template-select-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.template-select-container label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.template-select {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+/* --- Accordion Forms --- */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.accordion-section {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.accordion-header:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.accordion-icon {
+  transition: transform 0.2s ease;
+}
+
+.accordion-icon.open {
+  transform: rotate(180deg);
+}
+
+.accordion-body {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Repeated items (experience/education/projects) */
+.list-item-box {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.remove-item-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.remove-item-btn:hover {
+  color: var(--danger);
+}
+
+.add-item-btn {
+  background: transparent;
+  border: 1px dashed var(--accent);
+  color: var(--accent);
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+}
+
+.add-item-btn:hover {
+  background-color: var(--accent-glow);
+}
+
+/* Skills input tag style */
+.skills-input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  min-height: 42px;
+}
+
+.skill-tag {
+  background-color: var(--accent);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.skill-tag button {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.skill-tag button:hover {
+  color: white;
+}
+
+.skills-input {
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 100px;
+  outline: none;
+}
+
+/* --- ATS Analyzer Panel --- */
+.ats-analyzer-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.jd-input-box {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.jd-textarea {
+  width: 100%;
+  height: 200px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  resize: vertical;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+.jd-textarea:focus {
+  border-color: var(--accent);
+}
+
+/* Circular Score Chart */
+.score-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+}
+
+.score-circle-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.score-svg {
+  transform: rotate(-90deg);
+}
+
+.score-circle-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 10;
+}
+
+.score-circle-fill {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.score-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+}
+
+.score-details h3 {
+  font-size: 22px;
+  margin-bottom: 0.5rem;
+}
+
+.score-details p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.sub-scores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.sub-score-item {
+  background-color: var(--bg-input);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.sub-score-val {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.sub-score-lbl {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Results section */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.results-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.results-card h4 {
+  font-size: 16px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.warnings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+.warning-item {
+  padding: 10px 12px;
+  background-color: #FEF3C7;
+  border-left: 3px solid var(--warning);
+  color: #92400E;
+  font-size: 13px;
+  border-radius: 0 4px 4px 0;
+}
+
+.keywords-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.keyword-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.keyword-badge.matched {
+  background-color: #D1FAE5;
+  color: #065F46;
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.keyword-badge.missing {
+  background-color: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+/* --- Resume A4 Template Page --- */
+.resume-paper {
+  width: 21cm;
+  min-height: 29.7cm;
+  background: white;
+  color: #1A1A1A;
+  padding: 1.5cm 1.5cm;
+  box-shadow: 0 10px 30px rgba(44, 37, 35, 0.08);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.4;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* CSS specific for the resume document elements */
+.r-header {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.r-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+.r-contact {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 12px;
+  color: #4A5568;
+}
+
+.r-contact span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.r-section {
+  margin-bottom: 1.2rem;
+}
+
+.r-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+  text-transform: uppercase;
+  border-bottom: 1px solid #CBD5E1;
+  padding-bottom: 3px;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.5px;
+}
+
+.r-summary {
+  font-size: 12px;
+  color: #2D3748;
+  margin-bottom: 0.5rem;
+}
+
+.r-item {
+  margin-bottom: 0.8rem;
+}
+
+.r-item-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 13px;
+  color: #1A1A1A;
+}
+
+.r-item-subheader {
+  display: flex;
+  justify-content: space-between;
+  font-style: italic;
+  font-size: 12px;
+  color: #4A5568;
+  margin-bottom: 0.25rem;
+}
+
+.r-item-description {
+  font-size: 12px;
+  color: #2D3748;
+  padding-left: 1.2rem;
+}
+
+.r-item-description ul {
+  list-style-type: disc;
+}
+
+.r-item-description li {
+  margin-bottom: 2px;
+}
+
+.r-skills-list {
+  font-size: 12px;
+  color: #2D3748;
+}
+
+.r-projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Template Variant 2: Modern (Sidebar) */
+.resume-paper.modern {
+  display: flex;
+  padding: 0;
+}
+
+.resume-paper.modern .r-sidebar {
+  width: 32%;
+  background-color: #F8FAFC;
+  border-right: 1px solid #E2E8F0;
+  padding: 1.2cm 0.8cm;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.resume-paper.modern .r-main {
+  width: 68%;
+  padding: 1.2cm 1cm;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.resume-paper.modern .r-name {
+  text-align: left;
+}
+
+.resume-paper.modern .r-contact {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+/* Template Variant 3: Minimalist */
+.resume-paper.minimalist {
+  font-family: 'Georgia', serif;
+  padding: 1.8cm 1.8cm;
+  line-height: 1.5;
+}
+
+.resume-paper.minimalist .r-name {
+  font-family: 'Georgia', serif;
+  font-weight: normal;
+  font-size: 30px;
+  text-transform: none;
+}
+
+.resume-paper.minimalist .r-section-title {
+  font-family: 'Georgia', serif;
+  text-transform: none;
+  font-weight: italic;
+  font-size: 15px;
+  border-bottom: none;
+  margin-bottom: 0.4rem;
+}
+
+.resume-paper.minimalist .r-section-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 0.5px;
+  background-color: #A0AEC0;
+  margin-top: 2px;
+}
+
+/* --- A4 Screen Fitting helper --- */
+.resume-scale-wrapper {
+  transform-origin: top center;
+  transition: transform 0.2s ease;
+}
+
+/* --- Print Stylesheet --- */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  /* Hide all dashboard workspace controls */
+  .no-print,
+  .navbar,
+  .editor-sidebar,
+  .preview-controls,
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  .editor-layout {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  .preview-pane {
+    width: 100% !important;
+    padding: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+  
+  .resume-scale-wrapper {
+    transform: none !important;
+    width: 100% !important;
+  }
+  
+  .resume-paper {
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+}
