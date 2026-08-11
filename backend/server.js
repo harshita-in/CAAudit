@@ -21,7 +21,7 @@ app.use((err, req, res, next) => {
 });
 
 // Database connection
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/resume-ats-builder';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/resume-ats-builder';
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(MONGO_URI)
