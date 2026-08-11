@@ -44,7 +44,18 @@ CVAudit is a modern full-stack resume builder and Applicant Tracking System (ATS
    JWT_SECRET=supersecret_resume_ats_129847
    ```
 
-Launch both the backend API and the Vite frontend dev server concurrently using the root script:
+### Running the Application
+
+Since the frontend and backend are completely decoupled, you will need to run them concurrently in two separate terminal windows:
+
+#### 1. Start the Backend API Server
 ```bash
+cd backend
+npm run dev
+```
+
+#### 2. Start the Frontend Dev Server
+```bash
+cd frontend
 npm run dev
 ```
