@@ -1,14 +1,14 @@
 # Dependency directories
 node_modules/
-client/node_modules/
-server/node_modules/
+frontend/node_modules/
+backend/node_modules/
 
 # Local env files
 .env
-server/.env
+backend/.env
 
 # Build outputs
-client/dist/
+frontend/dist/
 
 # System logs
 *.log
